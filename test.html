@@ -15,12 +15,6 @@ var details = {
 var socket = io.connect(address, details);
 
 
-/* LOCAL TESTS */
-/*
-var address = "http://localhost:9999";
-var socket = io.connect(address);*/
-
-
 socket.on('echo', function (data) {
 	console.log("got an echo");
 	document.querySelector("#response").value = data.data;
