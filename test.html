@@ -1,0 +1,40 @@
+<html>
+<head>
+</head>
+<body>
+<script src="js/socket.io-1.3.7.js"></script>
+<script>
+
+/* IIS TESTS */
+
+var address = "http://localhost/";
+
+var details = {
+	path: '/nodetest/socket.io',
+};
+var socket = io.connect(address, details);
+
+
+/* LOCAL TESTS */
+/*
+var address = "http://localhost:9999";
+var socket = io.connect(address);*/
+
+
+socket.on('echo', function (data) {
+	console.log("got an echo");
+	document.querySelector("#response").value = data.data;
+    console.log(data);
+});
+	
+function send()
+{
+console.log("Sending...");
+socket.emit('echo', {data: 'Sec: ' + new Date().getSeconds()});
+}
+	
+</script>
+<button onclick="send()">Send</button><br/>
+<textarea id="response"></textarea>
+</body>
+</html>
